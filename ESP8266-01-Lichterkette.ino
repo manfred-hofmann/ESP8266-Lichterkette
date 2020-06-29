@@ -5,15 +5,23 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include <WiFiManager.h>
+#include <Adafruit_NeoPixel.h>
 #include <FS.h>
+#include "Colors.h"
 
 #define HOSTNAME "esp01_test"
 #define WIFI_SETUP_TIMEOUT 180
 
-String color1 = "#dbd854";
+#define PIXELPIN        2
+#define NUMPIXELS      10
+#define DELAYVAL      200
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIXELPIN, NEO_GRB + NEO_KHZ800);
+
 uint8_t color1_red;
 uint8_t color1_green;
 uint8_t color1_blue;
+int aktmillis = 0;
 
 ESP8266WebServer webServer(80);
 
@@ -31,7 +39,6 @@ void setup() {
   } 
   WiFiManager wifiManager;
   //wifiManager.resetSettings();
-  WiFi.hostname(HOSTNAME);
   wifiManager.setTimeout(WIFI_SETUP_TIMEOUT);
   wifiManager.autoConnect(HOSTNAME);
   WiFi.setAutoReconnect(true);
@@ -58,13 +65,29 @@ void setup() {
   Serial.println("connected...yeey :)");
   Serial.println("Starting webserver.");
   setupWebServer();
+  pixels.begin();
 }
 
 void loop() {
+  aktmillis = millis();
+  pixels.clear();
   // put your main code here, to run repeatedly:
   webServer.handleClient();
   MDNS.update();
-  delay(0);
+    for(int i=0; i<NUMPIXELS; i++) 
+    { 
+    delay(0);
+    // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
+    // Here we're using a moderately bright green color:
+    pixels.setPixelColor(i, pixels.Color(w_color[0].red, w_color[0].green, w_color[0].blue));
+
+    pixels.show();   // Send the updated pixel colors to the hardware.
+
+    delay(0);
+    while ( aktmillis + DELAYVAL > millis() )  webServer.handleClient();
+    aktmillis = millis();
+    }
+    delay(0);
 }
 
 
@@ -75,7 +98,7 @@ void handleRoot()
     "<head>"
     "<title>" + String(HOSTNAME) + "</title>"
     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
-    "<meta http-equiv=\"refresh\" content=\"60\" charset=\"UTF-8\">"
+    "<meta http-equiv=\"refresh\" content=\"300\" charset=\"UTF-8\">"
     "<link rel=\"icon\" type=\"image/png\" sizes=\"192x192\"  href=\"/android-icon-192x192.png\">"
     "<script src=\"/html5kellycolorpicker.min.js\"></script>"
     "<link href=\"/common.css\" rel=\"stylesheet\">"
@@ -86,33 +109,65 @@ void handleRoot()
     "</style>"
     "</head>"
     "<body>"
-    "<h1>" + String(HOSTNAME) + "</h1>\n";
-  message += "<form action=\"/commitSettings\">";
-  message += "<h2> Hallo </h2>\n";
-  message += "<br>\n";
-//  message += "<img src=\"/android-icon-192x192.png\">\n";
+    "<h2>" + String(HOSTNAME) + "</h2>\n";
+  message += "<form action=\"/commitSettings\" method=\"get\">";
+//  message += "<h2> Hallo </h2>\n";
   message += "<br>\n"
-      "<div class=\"example-wrap example-wrap-test-1\">\n"        
-      "<p class=\"example-top\">\n"
-      "<a href=\"\">Home</a>\n"
-      "<br>"
-      "<button type=\"submit\">Submit</button>"
-      "</p>\n"
-      "<canvas id=\"picker\"></canvas>\n"
-      "<br>\n"
-      "<input id=\"color\" name=\"co\" value=\"" + color1 + "\">\n" 
-      "<script>\n"
-      " new KellyColorPicker({place : 'picker', input : 'color', size : 150});\n"
-      "</script>\n"
-      "</div>\n";
+"  <div class=\"example-wrap example-wrap-test-5\">\n"
+"  <p class=\"example-top\">Farben Auswahl</p> \n"
+"  <canvas id=\"canvas\"></canvas>\n"
+"  <div class=\"inputs-list\">\n"
+"    <input id=\"color1\" name=\"co_0\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[0] + "\" readonly>\n"
+"    <input id=\"color2\" name=\"co_1\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[1] + "\" readonly>\n"
+"    <input id=\"color3\" name=\"co_2\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[2] + "\" readonly>\n"
+"    <input id=\"color4\" name=\"co_3\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[3] + "\" readonly>\n"
+"    <br>\n"
+"    <input id=\"color5\" name=\"co_4\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[4] + "\" readonly>\n"
+"    <input id=\"color6\" name=\"co_5\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[5] + "\" readonly>\n"
+"    <input id=\"color7\" name=\"co_6\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[6] + "\" readonly>\n"
+"    <input id=\"color8\" name=\"co_7\" onclick=\"picker.editInput(event.target)\" onchange=\"picker.editInput(event.target)\"  class=\"multi-input input-quad\" value=\"" + s_color[7] + "\" readonly>\n"
+"  </div>\n"
+
+"   <script>\n"
+"   var picker = new KellyColorPicker({ \n"
+"      place : 'canvas', \n"
+"      size  : 200,         \n"
+"      userEvents : { \n"
+"         change : function(self) {\n"
+"            if (!self.selectedInput) return;\n"
+"            if (self.getCurColorHsv().v < 0.5)\n"
+"               self.selectedInput.style.color = \"#FFF\";\n"
+"            else\n"
+"               self.selectedInput.style.color = \"#000\";\n"
+"            self.selectedInput.value = self.getCurColorHex();    \n"
+"            self.selectedInput.style.background = self.selectedInput.value;   \n"
+"         }\n"
+"      }\n"
+"   });\n"
+
+"   picker.editInput = function(target) {\n"
+
+"      if (picker.selectedInput) picker.selectedInput.classList.remove('selected');   \n"
+"      if (target) picker.selectedInput = target;\n"
+"      if (!picker.selectedInput) return false;\n"
+"      \n"
+"      picker.selectedInput.classList.add('selected');    \n"
+"      picker.setColor(picker.selectedInput.value);\n"
+"   }\n"
+
+"   var mInputs = document.getElementsByClassName('multi-input');\n"
+"   for (var i = 0; i < mInputs.length; i++) {\n"
+"      picker.editInput(mInputs[i]);\n"
+"   }\n"
+
+"   </script>\n"
+
+"</div> \n"
+"<br>\n"
+"   <button type=\"submit\" formaction=\"/commitSettings\">aktuallisieren</button>\n";
   
   message += "</body></html>";
   webServer.send(200, "text/html", message);
-}
-
-int StrToHex(char str[])
-{
-  return (int) strtol(str, 0, 16);
 }
 
 //##########################################################################################
@@ -156,19 +211,30 @@ void handleCommitSettings()
   char c_color1_green[3] = "";
   char c_color1_blue[3] = "";
   Serial.println("Commit settings pressed.");
-  Serial.println(webServer.arg("co"));
-  color1 = webServer.arg("co");
-  color1.toCharArray(c_color,color1.length()+1);
-  color1.substring(1, 3).toCharArray(c_color1_red,3);
-  color1.substring(3, 5).toCharArray(c_color1_green,3);
-  color1.substring(5, 7).toCharArray(c_color1_blue,3);
-  Serial.printf("Farbcode: rot = %s gruen = %s blau = %s \r\n", c_color1_red, c_color1_green, c_color1_blue);
-  color1_red = StrToHex(c_color1_red);
-  color1_green = StrToHex(c_color1_green);
-  color1_blue = StrToHex(c_color1_blue);
-  Serial.printf("Farbcode: rot = %i gruen = %i blau = %i \r\n", color1_red, color1_green, color1_blue );
-  
+  for ( uint8_t i = 0; i <= 8; i++)
+  { 
+    Serial.println("co_" + String(i) + ":" + webServer.arg("co_" + String(i)));
+    s_color[i] = webServer.arg("co_" + String(i));
+    w_color[i] = get_w_color(s_color[i]);
+    Serial.printf("Farbcode %i: rot = %i gruen = %i blau = %i \r\n", i, w_color[i].red, w_color[i].green, w_color[i].blue );
+  }
   callRoot();
+}
+
+color_s get_w_color(String in_color)
+{
+  char c_color_red[3] = "";
+  char c_color_green[3] = "";
+  char c_color_blue[3] = "";
+  color_s s_color;
+
+  in_color.substring(1, 3).toCharArray(c_color_red,3);
+  in_color.substring(3, 5).toCharArray(c_color_green,3);
+  in_color.substring(5, 7).toCharArray(c_color_blue,3);
+  s_color.red = (int) strtol(c_color_red, 0, 16);
+  s_color.green = (int) strtol(c_color_green, 0, 16);
+  s_color.blue = (int) strtol(c_color_blue, 0, 16);
+  return s_color;
 }
 
 /******************************************************************************

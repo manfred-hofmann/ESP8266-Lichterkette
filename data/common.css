@@ -4,7 +4,7 @@
 body {
     background : #ececec; 
     font-family: Calibri; 
-    padding-top: 48px; 
+    padding-top: 10px; 
     text-align : center;
 } 
 
@@ -16,8 +16,8 @@ input {
 
 .example-wrap {
     background: #e6e6e6;
-    width: 600px;
-    height: 600px;
+    width: 320px;
+    height: 400px;
     margin: 0 auto;
     border: 1px solid #cacaca;
     border-radius: 4px;
@@ -35,13 +35,13 @@ input {
 a { text-decoration : none;}
 
 .input-quad {
-    width : 64px;
-    height : 64px;
+    width : 60px;
+    height : 60px;
     display : inline-block;
 }
 
 .example-top {
-    margin-bottom : 120px;
+    margin-bottom : 10px;
 }
 
 .example-top a {
@@ -78,7 +78,7 @@ a { text-decoration : none;}
 }
 
 .multi-input {
-    border: 2px solid rgba(70, 70, 70, 0.18);
+    border: 2px solid rgba(60, 60, 60, 0.18);
     box-sizing: border-box;
     text-align : center;
 }
