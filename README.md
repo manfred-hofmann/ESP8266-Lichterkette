@@ -7,7 +7,7 @@ In der Configuration.h können folgende Parameter gepflegt werden:
 // folgende Werte bitte anpassen:  
 #define BUTTONPIN               D3  // da wo der Button angeschlossen ist  
 #define PIXELPIN                D2  // da wo die Lichterkette angeschlossen ist  
-#define PIN_LED        LED_BUILTIN  
+#define PIN_LED        LED_BUILTIN  // Die eingebaute LED beim WEMOS D1 mini (hier muss nichts geändert werden!) Für einen ESP8266-01 bitte auskommentieren!  
 #define MILLIAMPERE_LK       14000  // max. gesamte Stromaufnahme (mA) der Lichterkette  
 #define MILLIAMPERE_NETZTEIL 10000  // max. Strom des Netzteils (mA)  
 #define ESPALEXA_MAXDEVICES     30  // max. Anzahl von Alexa   
