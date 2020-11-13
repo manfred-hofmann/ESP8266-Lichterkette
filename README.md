@@ -32,5 +32,8 @@ Funktion des Buttons:
 - lang drücken: Verändern der Helligkeit  
 - einmal kurz und danach lang drücken: Verändern der Geschwindigkeit  
 
+Die einzelnen Settings können jeweils durch den ändern Button geändert werden:  
+https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Modes.JPG
+
 Viel Spaß damit.
 
