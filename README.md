@@ -13,7 +13,8 @@ In der Configuration.h können folgende Parameter gepflegt werden:
 #define ESPALEXA_MAXDEVICES     30  // max. Anzahl von Alexa   
   
 Danach einfach den Sketch und SketchData Upload durchführen.  
-Dann das WLAN "Lichterkette" anwählen und im Netzwerk anmelden auswählen.  
+Dann das WLAN "Lichterkette" anwählen und im Netzwerk anmelden auswählen. 
+https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Hauptmenue.JPG
 Dann wird die Webseite der Lichterkette geöffnet. Hier dann mit dem Schraubenschlüssel Button die WLAN Parameter des eigenen WLANs eingeben.  
 Außerdem kann hier der Lichterkettentyp und die Anzahl der Pixel eingestellt werden.  
 Zusätzlich kann das Verhalten nach einem Stromausfall definiert werden.  
