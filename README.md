@@ -15,13 +15,22 @@ In der Configuration.h können folgende Parameter gepflegt werden:
 Danach einfach den Sketch und SketchData Upload durchführen.  
 Dann das WLAN "Lichterkette" anwählen und im Netzwerk anmelden auswählen. 
 https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Hauptmenue.JPG
-Dann wird die Webseite der Lichterkette geöffnet. Hier dann mit dem Schraubenschlüssel Button die WLAN Parameter des eigenen WLANs eingeben.  
+Dann wird die Webseite der Lichterkette geöffnet. Hier dann mit dem Schraubenschlüssel Button die WLAN Parameter des eigenen WLANs eingeben. 
+https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Einstellungen.JPG
 Außerdem kann hier der Lichterkettentyp und die Anzahl der Pixel eingestellt werden.  
 Zusätzlich kann das Verhalten nach einem Stromausfall definiert werden.  
 Hier kann auch eingestellt werden, wieviel Alexa Geräte zur Verfügung gestellt werden.  
 Diese werden danach durch ein A vor der jeweiligen Zahl im Hauptmenü gekennzeichnet.
 Nachdem die Alexa die Geräte gefunden hat ("Alexa suche Geräte"), kann durch z.B. "Alexa Regenbogen an" auf dem Regenbogen umgeschaltet werden.
 Es wird immer der Name aus dem Menü verwendet. Also darauf achten, das der Name nicht doppelt vorhanden ist.
+
+Über die Leuchtschrift oben kann die Lichterkette aus und eingeschaltet werden.  
+
+Funktion des Buttons:  
+- einmal kurz drücken: einen Settingpunkt weiter  
+- zweimal kurz drücken: Aus/Ein  
+- lang drücken: Verändern der Helligkeit  
+- einmal kurz und danach lang drücken: Verändern der Geschwindigkeit  
 
 Viel Spaß damit.
 
