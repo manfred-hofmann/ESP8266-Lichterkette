@@ -1,6 +1,6 @@
-# ESP8266-Lichterkette
-
-Eine Lichterkette mit bis zu 30 verschiedenen Settings, die alle vom User frei einstellbar sind.  
+# ESP8266-Lichterkette 
+# Mit Alexa Steuerung
+# Eine Lichterkette mit bis zu 30 verschiedenen Settings, die alle vom User frei einstellbar sind.  
 Ich verwende als ESP8266 einen WEMOS D1 mini.  
 Aber es funktioniert auch mit einem ESP8266-01. Allerdings gehen beim ESP8266-01 keine OTA-Uploads mehr, da beim ESP8266-01 der Speicher zu klein ist.  
 In der Configuration.h können folgende Parameter gepflegt werden:  
