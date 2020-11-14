@@ -10,7 +10,7 @@
 #define BUTTONPIN               D3  // da wo der Button angeschlossen ist
 #define PIXELPIN                D2  // da wo die Lichterkette angeschlossen ist
 #define PIN_LED        LED_BUILTIN
-#define MILLIAMPERE_LK       14000  // max. gesamte Stromaufnahme (mA) der Lichterkette
+#define MILLIAMPERE_PIXEL     57.9  // max. Stromaufnahme (mA) eines Pixels (3*LED)
 #define MILLIAMPERE_NETZTEIL 10000  // max. Strom des Netzteils (mA)
 #define ESPALEXA_MAXDEVICES     30  // max. Anzahl von Alexa Geräten
 //#define OTA_PASS "1234"             // OTA Passwort (für die Übertragung des SPIFFS auskommentieren!)
