@@ -332,7 +332,7 @@ void setup() {
   aktstatuspixel = status2led(aktstatuspixel, mysetting.alexa_anzahl, GRUEN);
   aktstatuspixel++;
   delay (1000);
-  pixel_uAmpere = MILLIAMPERE_LK / mysetting.lk_anzahlpixel / 3 * 1000;
+ pixel_uAmpere = MILLIAMPERE_PIXEL * 1000 / 3;
 #ifdef MAMPERE_DEBUG
       Serial.printf("max. Pixelstrom %u uA\n",pixel_uAmpere );
 #endif
