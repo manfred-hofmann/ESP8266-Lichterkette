@@ -1,5 +1,4 @@
-# ESP8266-Lichterkette 
-# Mit Alexa Steuerung
+# ESP8266-Lichterkette mit Alexa Steuerung
 # Eine Lichterkette mit bis zu 30 verschiedenen Settings, die alle vom User frei einstellbar sind.  
 Hier gehts zur Wiki: https://github.com/manfred-hofmann/ESP8266-Lichterkette/wiki  
 
