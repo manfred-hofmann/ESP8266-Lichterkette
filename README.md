@@ -25,8 +25,9 @@ In der Configuration.h können folgende Parameter gepflegt werden:
 #define ESPALEXA_MAXDEVICES     30  // max. Anzahl von Alexa   
   
 Danach einfach den Sketch und SketchData Upload durchführen.  
-Bei der ersten Inbetriebnahme kann es eine weile daueren, da erst mal versucht wird sich mit einem WLAN zu verbinden. (ca. 60 sek)  
-Danach wird der API-Mode gestartet und ein eigenesLichterketten-WLAN geöffnent.  
+Bei der ersten Inbetriebnahme kann es eine Weile dauern, da erst mal versucht wird sich mit einem bestehenden WLAN zu verbinden. (ca. 60 sek)  
+Danach wird der API-Mode gestartet und ein eigenes Lichterketten-WLAN geöffnet.  
+
 Dann das WLAN "Lichterkette" z.B. mit dem Handy anwählen und im Netzwerk anmelden auswählen.  
 https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Hauptmenue.JPG  
 Dann wird die Webseite der Lichterkette geöffnet. Hier dann mit dem Schraubenschlüssel Button die WLAN Parameter des eigenen WLANs eingeben.  
