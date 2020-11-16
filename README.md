@@ -2,7 +2,18 @@
 # Mit Alexa Steuerung
 # Eine Lichterkette mit bis zu 30 verschiedenen Settings, die alle vom User frei einstellbar sind.  
 Hier gehts zur Wiki: https://github.com/manfred-hofmann/ESP8266-Lichterkette/wiki  
+
+Die Lichterkette vom Typ WS2812B könnt ihr z.B. hier erwerben:
+        * Easiest: 5V WS2812B LED-Strip:            https://s.click.aliexpress.com/e/_dZ1hCJ7
+        * (Long Ranges) 12V WS2811 LED-Strip:       https://s.click.aliexpress.com/e/_d7Ehe3L
+        * (High-Speed) 5V SK9822 LED-Strip:         https://s.click.aliexpress.com/e/_d8pzc89
+        * (Expensive) 5V APA102 LED-Strip:          https://s.click.aliexpress.com/e/_Bf9wVZUD
+        * (Flexible) 5V WS2812 S LED-Strip:         https://s.click.aliexpress.com/e/_d6XxPOH
+
 Ich verwende als ESP8266 einen WEMOS D1 mini.  
+        * Wemos D1 Mini:                            https://s.click.aliexpress.com/e/_dTVGMGl
+und nicht vergessen ein entsprechendes Netzteil dazu. Ein Pixel benötigt ca. 60mA!.
+        * 5V Power Supply:                          https://s.click.aliexpress.com/e/_dY5zCWt
 Aber es funktioniert auch mit einem ESP8266-01. Allerdings gehen beim ESP8266-01 keine OTA-Uploads mehr, da beim ESP8266-01 der Speicher zu klein ist.  
 In der Configuration.h können folgende Parameter gepflegt werden:  
 // folgende Werte bitte anpassen:  
@@ -14,6 +25,8 @@ In der Configuration.h können folgende Parameter gepflegt werden:
 #define ESPALEXA_MAXDEVICES     30  // max. Anzahl von Alexa   
   
 Danach einfach den Sketch und SketchData Upload durchführen.  
+Bei der ersten Inbetriebnahme kann es eine weile daueren, da erst mal versucht wird sich mit einem WLAN zu verbinden. (ca. 60 sek)
+Danach wird der API-Mode gestartet und ein eigenesLichterketten-WLAN geöffnent.
 Dann das WLAN "Lichterkette" z.B. mit dem Handy anwählen und im Netzwerk anmelden auswählen.  
 https://github.com/manfred-hofmann/ESP8266-Lichterkette/blob/master/Hauptmenue.JPG  
 Dann wird die Webseite der Lichterkette geöffnet. Hier dann mit dem Schraubenschlüssel Button die WLAN Parameter des eigenen WLANs eingeben.  
