@@ -16,7 +16,7 @@ und nicht vergessen ein entsprechendes Netzteil dazu. Ein Pixel benötigt ca. 60
 Aber es funktioniert auch mit einem ESP8266-01. Allerdings gehen beim ESP8266-01 keine OTA-Uploads mehr, da beim ESP8266-01 der Speicher zu klein ist.  
 In der Configuration.h können folgende Parameter gepflegt werden:  
 // folgende Werte bitte anpassen:  
-#define BUTTONPIN               D3  // da wo der Button angeschlossen ist  
+#define BUTTONPIN               D3  // da wo der Button angeschlossen ist (Taster gegen Masse evtl. mit 10k Pullup Widerstand)
 #define PIXELPIN                D2  // da wo die Lichterkette angeschlossen ist  
 #define PIN_LED        LED_BUILTIN  // Die eingebaute LED beim WEMOS D1 mini (hier muss nichts geändert werden!) Für einen ESP8266-01 bitte auskommentieren!  
 #define MILLIAMPERE_PIXEL     57.9  // max. Stromaufnahme (mA) eines Pixels (3*LED) 
